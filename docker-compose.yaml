@@ -28,7 +28,7 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - curso_CC_db:/var/lib/mysql
+      - curso_CC-db:/var/lib/mysql
     networks:
       - curso_CC
 
@@ -61,8 +61,7 @@ services:
       - curso_CC
  
 volumes:
-  curso_CC_db:
-  curso_CC_redis:
+  curso_CC-db:
 
 networks:
   curso_CC:

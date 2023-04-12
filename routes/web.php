@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Forum\HomeController;
+
+
+// Auth
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/acesso', 'loginForm')->name('loginForm');
+    Route::get('/cadastro', 'registerForm')->name('registerForm');
+});
+
+// Forum
+Route::controller(HomeController::class)->middleware('auth')->group(function () {
+
+    Route::get('/', 'home')->name('home');
 });

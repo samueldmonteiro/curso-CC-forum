@@ -1,0 +1,255 @@
+@media (max-width:1400px) {
+
+    .container {
+        min-width: 95% !important;
+    }
+
+    .main .aside {
+        margin-left: 20px !important;
+        max-width: 180px !important;
+    }
+}
+
+
+@media (min-width:1200px) {
+
+    .sub-menu-mobile {
+        display: none;
+    }
+}
+
+@media (max-width:1200px) {
+
+    .search-topics-mobile {
+        width: 70%;
+        margin: auto;
+    }
+
+    .aside,
+    .categories {
+        display: none !important;
+    }
+}
+
+
+@media (min-width:992px) {
+
+    .nav-link-mobile {
+        display: none !important;
+    }
+}
+
+@media (max-width:992px) {
+
+
+    header .my-questions-link {
+        display: none;
+    }
+
+    .search-topics {
+        display: none;
+    }
+
+    .search-topics-mobile {
+        display: block;
+        width: 100%;
+    }
+
+    .nav-item.dropdown {
+        display: none;
+    }
+
+    .navbar-nav {
+        margin-top: 20px;
+    }
+
+    .navbar-nav .nav-link {
+        justify-content: center;
+        align-items: flex-end;
+        font-size: 19px;
+        margin: 2px 0px;
+    }
+
+    .main .categories,
+    .main .aside {
+        display: none;
+    }
+
+    .write-answer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .write-answer div[contenteditable="true"] {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+
+    .profile-body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile-body .info-user {
+        width: 100% !important;
+        margin: 0 !important;
+        margin-bottom: 30px !important;
+    }
+
+    .profile-body .info-user ul {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .profile-body .info-user li {
+        margin: 0px 20px !important;
+    }
+
+    #content-answer {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width:768px) {
+
+    .profile-head-cover {
+        height: 300px !important;
+    }
+
+    .profile-head-info {
+        flex-direction: column;
+    }
+
+    .profile-head-info .user-avatar {
+        margin-right: 30px !important;
+    }
+
+    .profile-head-actions {
+        margin-top: 25px;
+    }
+
+    .profile-head-actions div {
+        margin: 0px 30px !important;
+    }
+
+}
+
+@media (max-width:576px) {
+
+    .profile-body .info-user {
+        width: 100% !important;
+        margin: 15px 0px !important;
+    }
+
+    .info-user li {
+        font-size: 14px;
+    }
+
+    .answer-item-actios,
+    .answer-item-actions button,
+    .answer-topic span {
+        font-size: 14px !important;
+    }
+
+    .topic-item-content,
+    .answer-item-content {
+        font-size: 14px;
+    }
+
+    .search-topics-mobile {
+        margin-left: -15px;
+    }
+
+    .topic-item-info .username {
+        font-size: 13px !important;
+    }
+
+    #answer {
+        font-size: 14px !important;
+    }
+
+    .topic-item-info p {
+        font-size: 11.5px !important;
+    }
+
+    .topic-item-states {
+        flex-direction: column !important;
+        display: flex;
+        justify-content: right;
+    }
+
+    .answer-item h4 {
+        font-size: 17px !important;
+    }
+
+    .topic-item-states span {
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .container.main {
+        padding: 0px;
+    }
+
+    .profile-head-cover {
+        height: 270px !important;
+    }
+
+    .form-login,
+    .form-register {
+        width: 95% !important;
+        margin-top: 20px !important
+    }
+
+    .profile-head-info-user .username {
+        font-size: 16px !important;
+    }
+
+    .profile-head-info-user {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-head-info-user .user-avatar {
+        margin: 0px !important;
+        margin-bottom: 18px !important;
+
+    }
+
+    .profile-head-actions div {
+        margin: 0px 15px !important;
+    }
+
+    .profile-head-actions div p {
+        font-size: 16px !important;
+    }
+
+    .topic-item-states {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .topic-item-states i {
+        margin-bottom: 3px;
+    }
+
+    #replyDate {
+        display: none !important;
+    }
+
+    .topic-item .user-avatar,
+    .answer-item .user-avatar {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .answer-item .topic-item-states {
+        font-size: 12px !important;
+    }
+
+}

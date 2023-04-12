@@ -1,0 +1,39 @@
+* {
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root{
+   --general-color: #0470c4;
+   --border-color-1: #d2dce3;
+   --border-color-2: #ebf2f7;
+}
+
+
+input{
+    outline: none;
+    padding: 7px 38px;
+    font-size: 15.5px;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #444444;
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+abbr{
+    cursor:  pointer !important;
+}
