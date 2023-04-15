@@ -956,6 +956,10 @@ abbr {
     padding: 12px;
 }
 
+.alert{
+    transition: 0.3s;
+}
+
 .m-show {
     height: auto;
     padding: 12px;

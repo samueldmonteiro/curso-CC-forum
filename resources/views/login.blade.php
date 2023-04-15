@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="login">
-        <form method="POST" action="login_action.php" class="form-login">
+        <form method="POST" action="{{ route('login') }}" class="auth-form form-login">
+            @csrf
             <div class="form-login-head">
                 <div class="icon-user">
                     <i class="bi bi-person"></i>
@@ -12,12 +13,6 @@
             </div>
 
             <div class="form-login-body">
-
-                <?php if(false):?>
-                <div class="alert message alert-danger" role="alert">
-                    message
-                </div>
-                <?php endif?>
 
                 <label>
                     <i class="bi bi-envelope-fill"></i>

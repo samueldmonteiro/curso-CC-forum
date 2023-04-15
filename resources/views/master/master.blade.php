@@ -100,7 +100,7 @@
 
     @include("includes/ads.php")
 
-    <script src="{{ mix('js/auth.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>

@@ -21,9 +21,10 @@ use App\Http\Controllers\Forum\HomeController;
 Route::controller(AuthController::class)->group(function () {
     Route::get('/acesso', 'loginForm')->name('loginForm');
     Route::get('/cadastro', 'registerForm')->name('registerForm');
+    Route::post('/login', 'login')->name('login');
 });
 
-// Forum
+// Forum Home
 Route::controller(HomeController::class)->middleware('auth')->group(function () {
 
     Route::get('/', 'home')->name('home');
