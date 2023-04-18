@@ -54,4 +54,12 @@ class AuthController extends Controller
         return message()->success('Login efetuado com sucesso!')
             ->status(true)->more(['redirect' => route('home')])->json();
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('loginForm');
+    }
 }

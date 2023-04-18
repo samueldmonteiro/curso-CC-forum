@@ -34,9 +34,9 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Topic $topic)
+    public function show(Request $request)
     {
-        //
+        dd(Topic::where('uri', $request->topic)->first());
     }
 
     /**

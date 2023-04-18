@@ -1,5 +1,10 @@
 {
-    "/js/app.js": "/js/app.js?id=0b5ee09d8a9acec09eda067eb3cb979a",
+    "/js/app.js": "/js/app.js?id=cbea53c2600a498c7b0bac332ba91487",
     "/js/auth.js": "/js/auth.js?id=cca7f5932fccae72ec333981d280c842",
-    "/css/app.css": "/css/app.css?id=afe9b8f9afa19298e0479195faf0ef60"
+    "/css/style.css": "/css/style.css?id=df806ade5528ccf001b3d2b19235b5e6",
+    "/css/vendor.css": "/css/vendor.css?id=1fd33c8640d13d574f249c17148f2021",
+    "/images/avatar.png": "/images/avatar.png?id=888d5954f5b724887e64fa67a7aafc9d",
+    "/images/laravel.jpg": "/images/laravel.jpg?id=92f7505ec554ec7e3dfca67119065006",
+    "/images/php.jpg": "/images/php.jpg?id=76f1caaf08739f42a2233f0355899cf5",
+    "/js/vendor.js": "/js/vendor.js?id=d4f97195a820d03dc76d655672b87a95"
 }

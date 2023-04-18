@@ -6,7 +6,7 @@
         <form action="search.php" class="search-topics search-topics-mobile">
             <div class="input-group mb-3">
                 <button><i class="bi bi-search"></i></button>
-                <input type="text" class="" placeholder="Pesquise por tópicos" name="search" value="<?=isset($_SESSION['search'])?$_SESSION['search']:""?>">
+                <input type="text" class="" placeholder="Pesquise por tópicos" name="search" value="">
               </div>
         </form>
 </div>

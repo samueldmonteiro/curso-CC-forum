@@ -15,17 +15,24 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Forum\HomeController;
-
+use App\Http\Controllers\TopicController;
 
 // Auth
 Route::controller(AuthController::class)->group(function () {
     Route::get('/acesso', 'loginForm')->name('loginForm');
     Route::get('/cadastro', 'registerForm')->name('registerForm');
     Route::post('/login', 'login')->name('login');
+    Route::get('/sair', 'logout')->name('logout');
 });
 
-// Forum Home
-Route::controller(HomeController::class)->middleware('auth')->group(function () {
+// Forum
+Route::middleware('auth')->group(function () {
 
-    Route::get('/', 'home')->name('home');
+    // home
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/', 'home')->name('home');
+    });
+
+    // topics
+    Route::resource('topicos', TopicController::class)->names('topics')->parameter('topicos', 'topic');
 });

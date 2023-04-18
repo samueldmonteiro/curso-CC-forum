@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/style.css') }}">
 </head>
 
 <body>
     <header>
         <nav class="container navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-              <a class="navbar-brand logo" href="">Fórum <span>Escolar</span></a>
+              <a class="navbar-brand logo" href="{{route('home')}}">Fórum <span>Escolar</span></a>
 
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,7 +40,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <div data-bs-toggle="dropdown" class="dropdown-action">
-                            <span></span><div class="user-avatar" style="background-image: url('media/avatars/<?=->avatar?>');"></div>
+                            <span>{{$user->name}}</span><div class="user-avatar" style="background-image: url('{{Storage::url($user->avatar)}}');"></div>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                             <li>
@@ -75,9 +76,10 @@
                         <label>
                             <i class="bi bi-people-fill"></i>
                             <select class="form-select" aria-label="Default select example" name="category">
-                                <?php foreach([] as $t):?>
-                                    <option value="<?=$t?>"></option>
-                                <?php endforeach?>
+
+                                @foreach($matters as $matter)
+                                    <option value="{{$matter->id}}">{{$matter->title}}</option>
+                                @endforeach
                             </select>
                         </label>
                         <div class="mb-3">
@@ -94,13 +96,13 @@
         </div>
     </div>
 
-    @include('includes/submenu_mobile')
+    @include('includes.submenu_mobile')
 
-    @yield('content')
-
-    @include("includes/ads.php")
+    @yield('content', '')
 
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+
 </body>
 
 </html>

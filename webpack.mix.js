@@ -12,9 +12,18 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .sass('resources/sass/app.scss', 'public/css/app.css')
+    .copyDirectory('resources/images', 'public/images')
+    
+    .sass('resources/sass/app.scss', 'public/css/vendor.css')
+    .postCss('resources/css/style.css', 'public/css/style.css')
 
     .js('resources/js/app.js', 'public/js')
+
+    .scripts([
+        'resources/js/script.js',
+        'resources/js/answerAction.js',
+        'resources/js/topicAction.js'], 'public/js/vendor.js')
+
     .js('resources/js/auth.js', 'public/js')
 
     .version();

@@ -3,11 +3,11 @@
     <p class="title">Matérias</p>
     <ul class="navbar-nav">
 
-        <?php foreach([] as $category):?>
+        @foreach($matters as $matter)
             <li class="nav-item">
-                <a href="categories.php?category=<?=$category->name ?? null?>" class="nav-link"><i class="bi bi-play-fill"></i><?=$category->name?></a>
+                <a href="categories.php?category={{$matter->title ?? null}}" class="nav-link"><i class="bi bi-play-fill"></i>{{$matter->title}}</a>
             </li>
-        <?php endforeach?>
+        @endforeach
 
         <li class="nav-item more-categories">
             <a href="categories.php"><i class="bi bi-three-dots"></i></a>
