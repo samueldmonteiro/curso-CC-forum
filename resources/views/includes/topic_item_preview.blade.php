@@ -4,13 +4,13 @@
         <div class="topic-item-info">
             <div class="user-avatar" style="background-image: url('{{Storage::url($topic->user->avatar)}}');"></div>
             <div>
-                <a href="profile.php?id=" class="username">{{$topic->user->name}}</a>
+                <a href="{{route('users.show', ['user'=> $topic->user->id])}}" class="username">{{$topic->user->name}}</a>
                 <p class="short-info">{{$topic->matter->title}}  - {{$topic->user->period}}ºano <span id="replyDate"></span></p>
             </div>
         </div>
 
         <div class="topic-item-states">
-            <span class="state statestyle">{{$topic->state}}></span>
+            <span class="state {{$topic->state ? 'open' : 'resolved'}}">{{$topic->state ? 'Aberto' : 'Concluído'}}</span>
             <span class="count-answers"><i class="bi bi-chat-dots-fill"></i><span>{{$topic->answers()->count()}}</span> Respostas</span>
         </div>
     </div>

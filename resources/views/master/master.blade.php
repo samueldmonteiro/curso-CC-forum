@@ -33,10 +33,10 @@
                         <a class="nav-link active nav-link-mobile" href="settings.php"> <i class="bi bi-sliders"></i>Configurações</a>
                     </li>
                     <li>
-                        <a class="nav-link active nav-link-mobile" href="profile.php"><i class="bi bi-person-fill"></i>Meu Perfil</a>
+                        <a class="nav-link active nav-link-mobile" href="{{route('users.show', ['user'=>$user->id])}}"><i class="bi bi-person-fill"></i>Meu Perfil</a>
                     </li>
                     <li>
-                        <a class="nav-link active nav-link-mobile" href="logout.php"><i class="bi bi-person-fill"></i>Logout</a>
+                        <a class="nav-link active nav-link-mobile" href="{{route('logout')}}"><i class="bi bi-person-fill"></i>Logout</a>
                     </li>
                     <li class="nav-item dropdown">
                         <div data-bs-toggle="dropdown" class="dropdown-action">
@@ -44,13 +44,13 @@
                         </div>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="profile.php"><i class="bi bi-person-fill"></i>Meu Perfil</a>
+                                <a class="dropdown-item" href="{{route('users.show', ['user'=>$user->id])}}"><i class="bi bi-person-fill"></i>Meu Perfil</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="settings.php"> <i class="bi bi-sliders"></i>Configurações</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="logout.php"><i class="bi bi-person-fill"></i>Logout</a>
+                                <a class="dropdown-item" href="{{route('logout')}}"><i class="bi bi-person-fill"></i>Logout</a>
                             </li>
                         </ul>
                   </li>

@@ -49,10 +49,16 @@ class User extends Authenticatable
         return $this->hasMany(Topic::class);
     }
 
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+
     protected function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => is_null($value) ? 'avatars/avatar.png' : $value
+            get: fn ($value) => !$value ? 'avatars/avatar.png' : $value
         );
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Forum\HomeController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\UserController;
 
 // Auth
 Route::controller(AuthController::class)->group(function () {
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/', 'home')->name('home');
     });
+
+    // users
+    Route::resource('perfil', UserController::class)->names('users')->parameter('perfil', 'user');
 
     // topics
     Route::resource('topicos', TopicController::class)->names('topics')->parameter('topicos', 'topic');
