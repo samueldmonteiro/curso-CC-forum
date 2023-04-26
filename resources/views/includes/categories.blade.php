@@ -9,8 +9,8 @@
             </li>
         @endforeach
 
-        <li class="nav-item more-categories">
+        <!--<li class="nav-item more-categories">
             <a href="categories.php"><i class="bi bi-three-dots"></i></a>
-        </li>
+        </li>-->
     </ul>
 </section>

@@ -25,5 +25,7 @@ mix
         'resources/js/topicAction.js'], 'public/js/vendor.js')
 
     .js('resources/js/auth.js', 'public/js')
+    .js('resources/js/register.js', 'public/js')
+
 
     .version();

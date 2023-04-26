@@ -34,7 +34,6 @@ class AuthController extends Controller
         $password = $request->password;
 
         if (!$email || !$password) {
-            //return response()->json(['status' => false, 'message' => 'Preecha todos os campos corretamente!']);
             return message()->error('Preecha todos os campos corretamente!')->status(false)->json();
         }
 

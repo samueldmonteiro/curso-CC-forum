@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
     // users
     Route::resource('perfil', UserController::class)->names('users')->parameter('perfil', 'user');
+    Route::post('perfil', [UserController::class, 'store'])->name('users.store')->withoutMiddleware('auth');
 
     // topics
     Route::resource('topicos', TopicController::class)->names('topics')->parameter('topicos', 'topic');

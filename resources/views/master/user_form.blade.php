@@ -9,6 +9,7 @@
     <title>Ciência da Computação Fórum</title>
     <link rel="stylesheet" href="{{ mix('css/vendor.css') }}">
     <link rel="stylesheet" href="{{ mix('css/style.css') }}">
+    @stack('style')
 
 </head>
 
@@ -20,7 +21,7 @@
 
     @yield('content')
 
-    <script src="{{ mix('js/auth.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

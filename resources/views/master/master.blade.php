@@ -13,7 +13,7 @@
     <header>
         <nav class="container navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-              <a class="navbar-brand logo" href="{{route('home')}}">Fórum <span>Escolar</span></a>
+              <a class="navbar-brand logo" href="{{route('home')}}">Fórum <span>C. C.</span></a>
 
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,24 +30,24 @@
                         <a data-bs-toggle="modal" data-bs-target="#modal-topic" data-bs-whatever="@mdo" class="nav-link active" id="create-topic" aria-current="page" href="#"><i class="bi bi-question-circle"></i>Perguntar</a>
                     </li>
                     <li>
-                        <a class="nav-link active nav-link-mobile" href="settings.php"> <i class="bi bi-sliders"></i>Configurações</a>
+                        <a class="nav-link active nav-link-mobile" href="{{route('users.edit', ['user'=>$currentUser->id])}}"> <i class="bi bi-sliders"></i>Configurações</a>
                     </li>
                     <li>
-                        <a class="nav-link active nav-link-mobile" href="{{route('users.show', ['user'=>$user->id])}}"><i class="bi bi-person-fill"></i>Meu Perfil</a>
+                        <a class="nav-link active nav-link-mobile" href="{{route('users.show', ['user'=>$currentUser->id])}}"><i class="bi bi-person-fill"></i>Meu Perfil</a>
                     </li>
                     <li>
                         <a class="nav-link active nav-link-mobile" href="{{route('logout')}}"><i class="bi bi-person-fill"></i>Logout</a>
                     </li>
                     <li class="nav-item dropdown">
                         <div data-bs-toggle="dropdown" class="dropdown-action">
-                            <span>{{$user->name}}</span><div class="user-avatar" style="background-image: url('{{Storage::url($user->avatar)}}');"></div>
+                            <span>{{$currentUser->name}}</span><div class="user-avatar" style="background-image: url('{{Storage::url($currentUser->avatar)}}');"></div>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="{{route('users.show', ['user'=>$user->id])}}"><i class="bi bi-person-fill"></i>Meu Perfil</a>
+                                <a class="dropdown-item" href="{{route('users.show', ['user'=>$currentUser->id])}}"><i class="bi bi-person-fill"></i>Meu Perfil</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="settings.php"> <i class="bi bi-sliders"></i>Configurações</a>
+                                <a class="dropdown-item" href="{{route('users.edit', ['user'=>$currentUser->id])}}"> <i class="bi bi-sliders"></i>Configurações</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{route('logout')}}"><i class="bi bi-person-fill"></i>Logout</a>

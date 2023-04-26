@@ -14747,9 +14747,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!******************************!*\
-  !*** ./resources/js/auth.js ***!
-  \******************************/
+/*!**********************************!*\
+  !*** ./resources/js/register.js ***!
+  \**********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./alert */ "./resources/js/alert.js");
@@ -14759,39 +14759,38 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-document.querySelector('.form-login').addEventListener('submit', /*#__PURE__*/function () {
+document.querySelector('.form-register').addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-    var form, formData, loginData, result, data, container;
+    var form, formData, registerData, result, response, container;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           e.preventDefault();
           form = e.currentTarget;
           formData = new FormData(form);
-          loginData = JSON.stringify({
+          registerData = JSON.stringify({
+            name: formData.get('name'),
             email: formData.get('email'),
-            password: formData.get('password')
+            password: formData.get('password'),
+            confirm_password: formData.get('confirm_password')
           });
-          console.log(loginData, form.action);
-          _context.next = 7;
-          return axios.post(form.action, loginData, {
+          _context.next = 6;
+          return axios.post(form.action, registerData, {
             headers: {
               'Content-Type': 'application/json'
             }
           });
-        case 7:
+        case 6:
           result = _context.sent;
-          data = result.data;
+          response = result.data;
+          console.log(response);
           container = document.querySelector('.form-body');
           if (container.querySelector('.alert')) container.querySelector('.alert').remove();
-          document.querySelector('.form-login-body').prepend((0,_alert__WEBPACK_IMPORTED_MODULE_1__["default"])(data.message, data.type));
-          if (data.status == true) {
-            setTimeout(function (_) {
-              window.location.href = data.redirect;
-            }, 1500);
+          container.prepend((0,_alert__WEBPACK_IMPORTED_MODULE_1__["default"])(response.message, response.type));
+          if (response.status == true) {
+            window.location.href = response.redirect;
           }
-          console.log(result.data);
-        case 14:
+        case 13:
         case "end":
           return _context.stop();
       }

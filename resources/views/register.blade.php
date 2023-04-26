@@ -1,8 +1,12 @@
-@extends('master.auth')
+@extends('master.user_form')
+
+@push('scripts')
+    <script src="{{ mix('js/register.js') }}"></script>
+@endpush
 
 @section('content')
     <div class="login register">
-        <form action="signup_action.php" class="form-register">
+        <form method="POST" action="{{route('users.store')}}" class="user-form form-register">
             <div class="form-register-head">
                 <div class="icon-user">
                     <i class="bi bi-person"></i>
@@ -11,8 +15,7 @@
                 <h2>Criar Conta</h2>
             </div>
 
-
-            <div class="form-register-body">
+            <div class="form-register-body form-body">
 
             <div class="alert message m-hide" role="alert">
                 
@@ -43,7 +46,7 @@
 
                 <div class="links">
                     <a href="">Esqueceu a senha?</a>
-                    <a href="login.php">Já tem uma conta?</a>
+                    <a href="{{route('loginForm')}}">Já tem uma conta?</a>
                 </div>
             </div>
         </form>

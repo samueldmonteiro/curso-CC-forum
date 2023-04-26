@@ -18,3 +18,11 @@ if (!function_exists('message')) {
         return new Message();
     }
 }
+
+if (!function_exists('is_email')) {
+
+    function is_email(string $value): bool
+    {
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
+    }
+}

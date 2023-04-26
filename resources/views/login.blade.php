@@ -1,8 +1,12 @@
-@extends('master.auth')
+@extends('master.user_form')
+
+@push('scripts')
+    <script src="{{ mix('js/auth.js') }}"></script>
+@endpush
 
 @section('content')
     <div class="login">
-        <form method="POST" action="{{ route('login') }}" class="auth-form form-login">
+        <form method="POST" action="{{ route('login') }}" class="user-form form-login">
             @csrf
             <div class="form-login-head">
                 <div class="icon-user">
@@ -12,7 +16,7 @@
                 <h2>Acesse</h2>
             </div>
 
-            <div class="form-login-body">
+            <div class="form-login-body form-body">
 
                 <label>
                     <i class="bi bi-envelope-fill"></i>

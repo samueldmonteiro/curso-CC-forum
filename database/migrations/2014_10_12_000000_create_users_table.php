@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('shift')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('level')->comment('0-normal;1-admin');
+            $table->integer('level')->comment('0-normal;1-admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
