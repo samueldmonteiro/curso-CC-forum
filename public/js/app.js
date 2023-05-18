@@ -3257,7 +3257,20 @@ function withinMaxClamp(min, value, max) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./resources/js/utils.js");
 
+
+
+// topics
+if ((0,_utils__WEBPACK_IMPORTED_MODULE_1__.qs)('.topic-subject')) {
+  (0,_utils__WEBPACK_IMPORTED_MODULE_1__.qsAll)('.topic-subject').forEach(function (subject) {
+    var content = subject.innerHTML;
+    console.log(content);
+    if (content.length > 150) {
+      subject.innerHTML = subject.innerHTML.substring(0, 150) + '...';
+    }
+  });
+}
 
 /***/ }),
 
@@ -3303,6 +3316,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+/***/ }),
+
+/***/ "./resources/js/utils.js":
+/*!*******************************!*\
+  !*** ./resources/js/utils.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "qs": () => (/* binding */ qs),
+/* harmony export */   "qsAll": () => (/* binding */ qsAll)
+/* harmony export */ });
+function qs(e) {
+  return document.querySelector(e);
+}
+function qsAll(e) {
+  return document.querySelectorAll(e);
+}
 
 /***/ }),
 

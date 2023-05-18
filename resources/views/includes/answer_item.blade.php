@@ -17,43 +17,43 @@
   </div>
 </div>
 
-<div class="answer-item" data-id="<?=$answerItem->id?>">
+<div class="answer-item" data-id="{{$answer->id}}">
     <h4>Resposta</h4>
     <div class="answer-item-head">
         <div class="answer-item-info topic-item-info">
-            <div class="user-avatar" style="background-image: url('<?=$base?>media/avatars/<?=$answerItem->user->avatar?>');"></div>
+            <div class="user-avatar" style="background-image: url('{{Storage::url($answer->user->avatar)}}');"></div>
             <div>
-                <a href="<?=$base?>profile.php?id=<?=$answerItem->user->id?>" class="username"><?=$answerItem->user->shortName()?></a>
-                <p><?=$answerItem->user->shift?>  - <?=$answerItem->user->grade?>ºano</p>
+                <a href="{{route('users.show', ['user'=> $answer->user->id])}}" class="username">{{$answer->user->name}}</a>
+                <p>{{$answer->user->shift}}  - {{$answer->user->period}}ºano</p>
             </div>
         </div>
 
         <span class="topic-item-states">
             <i class="bi bi-clock-fill"></i>
-            <span><?=$answerItem->replyDate()?></span>
+            <span>{{$answer->created_at}}</span>
         </span>
     </div>
 
     <div class="answer-item-body">
         <div class="answer-item-content">
-            <?=nl2br($answerItem->getBody())?>
+            {!! $answer->content !!}
         </div>
     </div>
 
     <div class="answer-item-actions">
-        <button id="like-answer">
-            <?php if($answerItem->isLiked):?>
+        <!--<button id="like-answer">
+            if($answerItem->isLiked):?>
                 <i class="bi bi-heart-fill liked"></i>
-            <?php else:?>
+            else:?>
                 <i id="answer-like" class="bi bi-heart liked"></i>
-            <?php endif?>
-            <span class="count-like"><?=$answerItem->countLikes?></span>
-        </button>
+            endif?>
+            <span class="count-like">$answerItem->countLikes?></span>
+        </button>-->
 
         <span class="buttons-action">
-            <?php if($answerItem->mine):?>
+            @if($answer->user->id == auth()->id())
                 <i  data-bs-toggle="modal" data-bs-target="#modalDeleteAnswer" id="button-delete-answer" class="bi bi-trash3-fill"></i>
-            <?php endif?>
+            @endif
             <abbr title="Denunciar">
                 <i class="bi bi-flag-fill"></i>
             </abbr>

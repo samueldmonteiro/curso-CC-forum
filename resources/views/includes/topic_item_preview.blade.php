@@ -10,14 +10,14 @@
         </div>
 
         <div class="topic-item-states">
-            <span class="state {{$topic->state ? 'open' : 'resolved'}}">{{$topic->state ? 'Aberto' : 'Concluído'}}</span>
+            <span class="state {{$topic->state == 0 ? 'open' : 'resolved'}}">{{$topic->state == 0 ? 'Aberto' : 'Concluído'}}</span>
             <span class="count-answers"><i class="bi bi-chat-dots-fill"></i><span>{{$topic->answers()->count()}}</span> Respostas</span>
         </div>
     </div>
     
     <div class="topic-item-body">
         <div class="topic-item-content topic-subject">
-            {{nl2br($topic->content)}}
+            {{ $topic->title}}
         </div>
     </div>
 

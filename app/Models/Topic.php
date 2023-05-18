@@ -9,6 +9,13 @@ class Topic extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'title',
+        'uri',
+        'content'
+    ];
+
     public function matter()
     {
         return $this->belongsTo(Matter::class);
@@ -24,7 +31,7 @@ class Topic extends Model
         return $this->hasMany(Answer::class);
     }
 
-    public function generateUri(int $size = 8): string
+    private function randomString(int $size)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
@@ -34,5 +41,17 @@ class Topic extends Model
             $randomString .= $characters[$index];
         }
         return $randomString;
+    }
+
+    public function generateUri(int $size = 8): string
+    {
+        $uri = $this->randomString($size);
+
+        while (Topic::where('uri', $uri)->first()) {
+            $uri = $this->randomString($size);
+        }
+
+        $this->uri = $uri;
+        return $uri;
     }
 }

@@ -5,6 +5,6 @@
     </div>
 
     <div class="announcement">
-        <a href=""><img src="{{asset('images/laravel.jpg')}}" /></a>
+        <a href=""><img src="{{asset('images/back.png')}}" /></a>
     </div>
 </section>

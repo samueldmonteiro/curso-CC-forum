@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AnswerRequest;
 use App\Models\Answer;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -26,9 +28,16 @@ class AnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AnswerRequest $request)
     {
-        //
+        $topic = Topic::find($request->topic);
+
+        $answer = new Answer();
+        $answer->user_id = auth()->id();
+        $answer->content = $request->content;
+        $topic->answers()->save($answer);
+
+        return back();
     }
 
     /**

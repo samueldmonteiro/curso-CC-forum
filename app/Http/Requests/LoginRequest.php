@@ -8,6 +8,8 @@ class LoginRequest extends FormRequest
 {
 
     protected $stopOnFirstFailure = true;
+    public $error;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -23,6 +25,7 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
+        return false;
         return [
             'email' => 'required|email',
             'password' => 'required|min:8'

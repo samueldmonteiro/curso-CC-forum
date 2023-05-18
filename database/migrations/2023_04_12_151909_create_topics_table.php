@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
             $table->string('uri')->unique();
+            $table->string('title');
             $table->text('content');
-            $table->boolean('state')->comment('0 - open;1 - closed');
+            $table->boolean('state')->comment('0 - open;1 - closed')->default(false);
             $table->timestamps();
 
             $table->foreignId('user_id')->constrained();

@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ mix('css/vendor.css') }}">
     <link rel="stylesheet" href="{{ mix('css/style.css') }}">
+    @stack('css')
+
+    <x-head.tinymce-config id="topicBody"/>
 </head>
 
 <body>
@@ -27,7 +30,7 @@
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item me-4 my-questions-link">
-                        <a data-bs-toggle="modal" data-bs-target="#modal-topic" data-bs-whatever="@mdo" class="nav-link active" id="create-topic" aria-current="page" href="#"><i class="bi bi-question-circle"></i>Perguntar</a>
+                        <a data-bs-toggle="modal" data-bs-target="#modal-topic" data-bs-whatever="@mdo" class="nav-link active" id="create-topic" aria-current="page" href="#"><i class="bi bi-question-circle"></i>Criar Tópico</a>
                     </li>
                     <li>
                         <a class="nav-link active nav-link-mobile" href="{{route('users.edit', ['user'=>$currentUser->id])}}"> <i class="bi bi-sliders"></i>Configurações</a>
@@ -65,17 +68,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Criar Tópico</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Novo Tópico</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-create-topic">
+                    <form class="form-create-topic" action="{{route('topics.store')}}">
                     <div class="alert message m-hide text-center" role="alert">
                     
                     </div>
                         <label>
                             <i class="bi bi-people-fill"></i>
-                            <select class="form-select" aria-label="Default select example" name="category">
+                            <select class="form-select" aria-label="Default select example" name="category" id="t-category">
 
                                 @foreach($matters as $matter)
                                     <option value="{{$matter->id}}">{{$matter->title}}</option>
@@ -83,12 +86,20 @@
                             </select>
                         </label>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Escreva aqui sua Pergunta:</label>
-                            <textarea class="form-control" id="message-text" name="content"></textarea>
+                            <label for="message-text" class="col-form-label">Crie seu tópico abaixo:</label>
                         </div>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="t-title" placeholder="Título do seu tópico">
+                        </div>
+
+                        <div class="mb-3">
+                            <x-forms.tinymce-editor id="topicBody"/>
+                        </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Postar</button>
+                            <button type="submit" class="btn btn-primary">Criar</button>
                         </div>
                     </form>
                 </div>
@@ -101,7 +112,8 @@
     @yield('content', '')
 
     <script src="{{ mix('js/app.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/newTopic.js') }}"></script>
+    @stack('js')
 
 </body>
 

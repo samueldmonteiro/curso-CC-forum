@@ -7,7 +7,7 @@
     <section class="profile">
         <div class="profile-head">
             <div class="profile-head-cover">
-                <img src="{{asset('images/cover.jpg')}}" alt="">
+                <img src="{{asset('images/back.png')}}" alt="">
             </div>
 
             <div class="profile-head-info">

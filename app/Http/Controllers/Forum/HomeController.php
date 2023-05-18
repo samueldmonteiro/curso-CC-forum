@@ -19,7 +19,7 @@ class HomeController extends Controller
         return view('home', [
             'user' => auth()->user(),
             'matters' => Matter::all(),
-            'topics' => Topic::all()
+            'topics' => Topic::orderByDesc('id')->get()
         ]);
     }
 }

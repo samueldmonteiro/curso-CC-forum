@@ -4,7 +4,7 @@ export default function alert(content, type) {
 
     const message = document.createElement('div');
     const style = `alert-${type}`;
-    message.classList.add('alert', style);
+    message.classList.add('alert', 'text-center', style);
     message.innerText = content;
     return message;
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Forum\HomeController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UserController;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Request;
 
 // Auth
 Route::controller(AuthController::class)->group(function () {
@@ -40,4 +43,12 @@ Route::middleware('auth')->group(function () {
 
     // topics
     Route::resource('topicos', TopicController::class)->names('topics')->parameter('topicos', 'topic');
+
+    //answers
+    Route::resource('respostas', AnswerController::class)->names('answers')->parameter('respostas', 'answer');
+
+});
+
+Route::get('/test', function (LoginRequest $r) {
+    return response('ok!');
 });

@@ -3263,7 +3263,7 @@ function alert(content, type) {
   if (type == 'error') type = 'danger';
   var message = document.createElement('div');
   var style = "alert-".concat(type);
-  message.classList.add('alert', style);
+  message.classList.add('alert', 'text-center', style);
   message.innerText = content;
   return message;
 }

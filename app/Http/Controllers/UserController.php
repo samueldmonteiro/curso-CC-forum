@@ -39,6 +39,10 @@ class UserController extends Controller
             return message()->error('As senhas devem ser correspondentes!')->status(false)->json();
         }
 
+        if (User::where('email', $request->email)->first()) {
+            return message()->error('Este e-mail já está cadastrado, utilize outro e-mail!')->status(false)->json();
+        }
+
         $user = User::make($request->all());
         $user->password = Hash::make($request->password);
         $user->save();
