@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UserHasAnswer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
+
 
 class AnswerRequest extends FormRequest
 {
@@ -21,10 +24,22 @@ class AnswerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'topic' => 'exists:App\Models\Topic,id|integer|required',
-            'content' => 'required'
-        ];
+        switch ($this->method()) {
+
+            case 'POST': {
+                    return [
+                        'topic' => 'exists:App\Models\Topic,id|integer|required',
+                        'content' => 'required'
+                    ];
+                }
+            case 'DELETE': {
+                    return [
+                        'answer' => ['required', 'integer', 'exists:answers,id', new UserHasAnswer]
+                    ];
+                }
+            default:
+                break;
+        }
     }
 
     /**

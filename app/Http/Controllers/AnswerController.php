@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AnswerRequest;
+use App\Http\Requests\AnswerLikeRequest;
 use App\Models\Answer;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -67,8 +68,17 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Answer $answer)
+    public function destroy(AnswerRequest $request)
     {
-        //
+        Answer::destroy($request->answer);
+        return message()->success('Sua reposta foi deletada!')->json();
+    }
+
+    public function like(AnswerLikeRequest $request)
+    {
+        $answer = Answer::find($request->answer);
+        $answer->likeToggle();
+
+        return response()->json(true);
     }
 }

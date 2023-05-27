@@ -32,7 +32,7 @@
                     </div>
 
                     <div>
-                        <p>indefinido</p>
+                        <p>{{$user->allLikesReceived()}}</p>
                         <p>Likes</p>
                     </div>
                 </div>

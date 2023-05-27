@@ -8,57 +8,55 @@ qs("#answer").addEventListener('click', _ => {
     writeAnswerArea.classList.toggle('show-write-answer');
 });
 
-/**qs('#sendAnswerBtn').addEventListener('click', _ => {
+const modalAnswerDelete = qs("#modalDeleteAnswer");
 
-    if (tinyMCE.get('answerContent').getContent() == "") {
-        const errorMessage = alert('Escreva algo na sua resposta!', 'error');
-        if (!qs('.answer-topic').querySelector('.alert')) qs('.answer-topic').prepend(errorMessage);
-    }
-});
-**/
 if (qs(".answer-item")) {
     qsAll(".answer-item").forEach(answerItem => {
         let buttonDeleteAnswer = answerItem.querySelector("#button-delete-answer");
         if (buttonDeleteAnswer) {
-            buttonDeleteAnswer.addEventListener("click", buildAnswerDeletetion);
+            buttonDeleteAnswer.addEventListener("click", e => {
+                modalAnswerDelete.dataset.answer = answerItem.dataset.id;
+                modalAnswerDelete.dataset.url = buttonDeleteAnswer.dataset.url;
+            });
         }
-    })
+    });
+
+    modalAnswerDelete.querySelector('.confirm').addEventListener('click', answerDelete);
 }
 
-function buildAnswerDeletetion(e) {
-    modalDeleteAnswer = qs("#modalDeleteAnswer");
-    answerId = e.currentTarget.closest(".answer-item").dataset.id;
-    modalDeleteAnswer.dataset.id = answerId;
-}
+async function answerDelete() {
 
+    const data = JSON.stringify({
+        answer: modalAnswerDelete.dataset.answer
+    });
 
-if (qs(".delete-ok")) {
-    qs(".delete-ok").addEventListener("click", confirmAnswerDeletetion)
-}
-
-function confirmAnswerDeletetion(e) {
-    idAnswer = e.currentTarget.closest("#modalDeleteAnswer").dataset.id;
-    form = new FormData();
-    form.append("id_answer", idAnswer);
-
-    fetch("answer_delete_action.php", {
-        method: "POST",
-        body: form
-    }).then(() => {
+    axios.delete(
+        modalAnswerDelete.dataset.url,
+        {
+            data: data,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+    ).then(response => {
         window.location.reload();
-    })
+    }).catch(error => {
+        console.log(error.response.data.message);
+        console.log(error.response.data.errors);
+        modalAnswerDelete.prepend(alert(error.response.data.message, 'error'));
+    });
 }
 
-if (qs("#like-answer")) {
-    qsAll("#like-answer").forEach(buttonLike => {
-        buttonLike.addEventListener("click", likeAnswer)
-    })
+if (qs(".answer-item")) {
+    qsAll('#like-answer').forEach(likeArea => {
+        likeArea.addEventListener("click", answerLikeToggle)
+    });
 }
 
-function likeAnswer(e) {
-    iconLike = e.currentTarget.querySelector('i');
-    countLike = e.currentTarget.querySelector(".count-like");
-    answerId = e.currentTarget.closest(".answer-item").dataset.id;
+function answerLikeToggle(e) {
+    let iconLike = e.currentTarget.querySelector('i');
+    let countLike = e.currentTarget.querySelector(".count-like");
+    let answerId = e.currentTarget.closest(".answer-item").dataset.id;
 
     if (iconLike.classList.contains('bi-heart')) {
         iconLike.classList.remove('bi-heart')
@@ -71,12 +69,18 @@ function likeAnswer(e) {
         countLike.innerHTML = parseInt(countLike.innerHTML) - 1
     }
 
-    form = new FormData();
-    form.append("id_answer", answerId);
-    fetch("answer_like_action.php", {
-        method: "POST",
-        body: form
-    })
+    const data = JSON.stringify({ answer: parseInt(answerId) });
+    console.log(data);
+
+    axios.post(
+        '/respostas/like', data,
+        { headers: { 'Content-Type': 'application/json' } }
+    ).then(response => {
+        console.log(response.data);
+    }).catch(error => {
+        console.log(error.response.data.message);
+        console.log(error.response.data.errors);
+    });
 }
 
 //114

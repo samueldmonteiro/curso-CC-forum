@@ -63,4 +63,27 @@ class User extends Authenticatable
             get: fn ($value) => !$value ? 'avatars/avatar.png' : $value
         );
     }
+
+    public function likeThisAnswer(int $answerId)
+    {
+        if (
+            AnswerLike::where('answer_id', $answerId)
+            ->where('user_id', $this->id)
+            ->first()
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function allLikesReceived()
+    {
+        $likes = 0;
+
+        foreach ($this->answers()->get() as $answer) {
+            $likes += $answer->likes()->count();
+        };
+
+        return $likes;
+    }
 }

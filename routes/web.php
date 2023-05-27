@@ -46,7 +46,9 @@ Route::middleware('auth')->group(function () {
 
     //answers
     Route::resource('respostas', AnswerController::class)->names('answers')->parameter('respostas', 'answer');
-
+    Route::controller(AnswerController::class)->name('answers.')->prefix('respostas')->group(function () {
+        Route::post('/like', 'like')->name('like');
+    });
 });
 
 Route::get('/test', function (LoginRequest $r) {

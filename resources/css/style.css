@@ -624,6 +624,10 @@ abbr {
 }
 
 
+#modalDeleteAnswer .modal-body {
+    color: var(--window-color);
+}
+
 .form-login-body,
 .form-register-body {
     display: flex;

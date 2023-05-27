@@ -7,11 +7,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            Deseja Deletar esta Publicação?
+            Deseja Deletar sua resposta?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary delete-ok">Deletar</button>
+        <button type="button" class="btn btn-primary confirm">Deletar</button>
       </div>
     </div>
   </div>
@@ -41,18 +41,18 @@
     </div>
 
     <div class="answer-item-actions">
-        <!--<button id="like-answer">
-            if($answerItem->isLiked):?>
+        <button id="like-answer">
+            @if(auth()->user()->likeThisAnswer($answer->id))
                 <i class="bi bi-heart-fill liked"></i>
-            else:?>
+            @else
                 <i id="answer-like" class="bi bi-heart liked"></i>
-            endif?>
-            <span class="count-like">$answerItem->countLikes?></span>
-        </button>-->
+            @endif
+            <span class="count-like">{{ $answer->likes()->count() }}</span>
+        </button>
 
         <span class="buttons-action">
             @if($answer->user->id == auth()->id())
-                <i  data-bs-toggle="modal" data-bs-target="#modalDeleteAnswer" id="button-delete-answer" class="bi bi-trash3-fill"></i>
+                <i  data-url="{{ route('answers.destroy', ['answer'=>$answer->id]) }}" data-bs-toggle="modal" data-bs-target="#modalDeleteAnswer" id="button-delete-answer" class="bi bi-trash3-fill"></i>
             @endif
             <abbr title="Denunciar">
                 <i class="bi bi-flag-fill"></i>

@@ -11,6 +11,20 @@ class Answer extends Model
 {
     use HasFactory;
 
+    public function likeToggle()
+    {
+        $user = auth()->user();
+
+        if ($user->likeThisAnswer($this->id)) {
+            AnswerLike::where('user_id', $user->id)->where('answer_id', $this->id)->first()->delete();
+        } else {
+            AnswerLike::create([
+                'user_id' => $user->id,
+                'answer_id' => $this->id
+            ]);
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -19,6 +33,11 @@ class Answer extends Model
     public function topic()
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(AnswerLike::class);
     }
 
     private function checkContent(string $content): string
