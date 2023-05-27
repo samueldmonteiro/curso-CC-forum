@@ -13,21 +13,23 @@ document.querySelector('.form-register').addEventListener('submit', async e => {
         confirm_password: formData.get('confirm_password'),
     });
 
-    const result = await axios.post(
+    const formContainer = document.querySelector('.form-body');
+
+    axios.post(
         form.action, registerData,
         { headers: { 'Content-Type': 'application/json' } }
-    );
+    ).then(response => {
 
-    const response = result.data;
-    console.log(response);
+        if (formContainer.querySelector('.alert')) formContainer.querySelector('.alert').remove();
+        formContainer.prepend(alert(response.data.message, response.data.type));
 
-    const container = document.querySelector('.form-body');
-    if (container.querySelector('.alert')) container.querySelector('.alert').remove();
-    container.prepend(alert(response.message, response.type));
+        window.location.href = response.data.redirect;
+    }).catch(error => {
 
-    if (response.status == true) {
-        window.location.href = response.redirect;
-    }
+        if (formContainer.querySelector('.alert')) formContainer.querySelector('.alert').remove();
+        formContainer.prepend(alert(error.response.data.message, 'error'));
+
+    });
 });
 
 

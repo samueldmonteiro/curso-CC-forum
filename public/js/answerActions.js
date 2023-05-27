@@ -173,19 +173,16 @@ function answerLikeToggle(e) {
   var iconLike = e.currentTarget.querySelector('i');
   var countLike = e.currentTarget.querySelector(".count-like");
   var answerId = e.currentTarget.closest(".answer-item").dataset.id;
-  if (iconLike.classList.contains('bi-heart')) {
-    iconLike.classList.remove('bi-heart');
-    iconLike.classList.add('bi-heart-fill');
+  iconLike.classList.toggle('bi-heart');
+  iconLike.classList.toggle('bi-heart-fill');
+  if (!iconLike.classList.contains('bi-heart')) {
     countLike.innerHTML = parseInt(countLike.innerHTML) + 1;
   } else {
-    iconLike.classList.add('bi-heart');
-    iconLike.classList.remove('bi-heart-fill');
     countLike.innerHTML = parseInt(countLike.innerHTML) - 1;
   }
   var data = JSON.stringify({
     answer: parseInt(answerId)
   });
-  console.log(data);
   axios.post('/respostas/like', data, {
     headers: {
       'Content-Type': 'application/json'

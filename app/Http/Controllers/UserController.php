@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Matter;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\ImageManagerStatic;
 
 class UserController extends Controller
 {
@@ -29,20 +31,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        if (in_array('', $request->all()) || !is_email($request->email)) {
-            return message()->error('Preencha todos os campos corretamente!')->status(false)->json();
-        }
-
-        if ($request->password !== $request->confirm_password) {
-            return message()->error('As senhas devem ser correspondentes!')->status(false)->json();
-        }
-
-        if (User::where('email', $request->email)->first()) {
-            return message()->error('Este e-mail já está cadastrado, utilize outro e-mail!')->status(false)->json();
-        }
-
         $user = User::make($request->all());
         $user->password = Hash::make($request->password);
         $user->save();
@@ -79,31 +69,28 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         if (auth()->id() !== $user->id) {
             return back();
         }
 
-        $validated = $request->validate([
-            'name' => 'required|min:5|max:30',
-            //'email' => 'email|required|unique:users',
-            'period' => 'required|integer',
-            'shift' => 'required',
-            'password' => 'nullable|min:8',
-            'confirm_password' => 'nullable|min:8|same:password'
-        ]);
-
-        if (!in_array($request->period, [1, 2, 3, 4, 5])) {
-            return back()->withErrors(['period' => 'Preecha o campo de período corretamente']);
-        }
-
-        if (!in_array($request->shift, ['Matutino', 'Vespertino', 'Noturno'])) {
-            return back()->withErrors(['period' => 'Preecha o campo de turno corretamente']);
-        }
-
         $user->fill($request->only('name', 'period', 'shift'));
         if ($request->password) $user->password = Hash::make($request->password);
+
+        if ($request->avatar) {
+            $cachePath = $request->file('avatar')->store('cache');
+            $hashName = $request->file('avatar')->hashName();
+
+            $image = ImageManagerStatic::make(public_path('storage/' . $cachePath));
+            $image->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $image->save(public_path('storage/' . 'avatars/' . $hashName));
+
+            $user->avatar = 'avatars/' . $hashName;
+        }
+
         $user->save();
 
         return back()->with('message', 'Dados atualizados com sucesso!');

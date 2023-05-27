@@ -58,19 +58,16 @@ function answerLikeToggle(e) {
     let countLike = e.currentTarget.querySelector(".count-like");
     let answerId = e.currentTarget.closest(".answer-item").dataset.id;
 
-    if (iconLike.classList.contains('bi-heart')) {
-        iconLike.classList.remove('bi-heart')
-        iconLike.classList.add('bi-heart-fill')
-        countLike.innerHTML = parseInt(countLike.innerHTML) + 1
+    iconLike.classList.toggle('bi-heart');
+    iconLike.classList.toggle('bi-heart-fill');
 
+    if (!iconLike.classList.contains('bi-heart')) {
+        countLike.innerHTML = parseInt(countLike.innerHTML) + 1;
     } else {
-        iconLike.classList.add('bi-heart')
-        iconLike.classList.remove('bi-heart-fill')
-        countLike.innerHTML = parseInt(countLike.innerHTML) - 1
+        countLike.innerHTML = parseInt(countLike.innerHTML) - 1;
     }
 
     const data = JSON.stringify({ answer: parseInt(answerId) });
-    console.log(data);
 
     axios.post(
         '/respostas/like', data,

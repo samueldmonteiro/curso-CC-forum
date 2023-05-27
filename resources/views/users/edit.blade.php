@@ -11,7 +11,7 @@
             <x-alert type="success" :message="session('message')"/>
         @endif
 
-        <form method="POST" action="{{route('users.update', ['user'=>$user->id])}}" class="form-user-settings">
+        <form method="POST" action="{{route('users.update', ['user'=>$user->id])}}" class="form-user-settings" enctype="multipart/form-data">
 
             @method('PUT')
             @csrf
@@ -21,6 +21,12 @@
                 </div>
                 <div class="form-register-body">
 
+                    <div class="mb-3">
+                      <label for="formFileSm" class="form-label">Imgem de perfil</label>
+                      <input class="form-control form-control-sm" id="formFileSm" type="file" name="avatar">
+                    </div>
+
+    
                     <label>
                         <i class="bi bi-person-fill"></i>
                         <input type="text" name="name" placeholder="Nome completo" value="{{$user->name}}">

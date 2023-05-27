@@ -14761,7 +14761,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 document.querySelector('.form-register').addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-    var form, formData, registerData, result, response, container;
+    var form, formData, registerData, formContainer;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -14774,23 +14774,20 @@ document.querySelector('.form-register').addEventListener('submit', /*#__PURE__*
             password: formData.get('password'),
             confirm_password: formData.get('confirm_password')
           });
-          _context.next = 6;
-          return axios.post(form.action, registerData, {
+          formContainer = document.querySelector('.form-body');
+          axios.post(form.action, registerData, {
             headers: {
               'Content-Type': 'application/json'
             }
+          }).then(function (response) {
+            if (formContainer.querySelector('.alert')) formContainer.querySelector('.alert').remove();
+            formContainer.prepend((0,_alert__WEBPACK_IMPORTED_MODULE_1__["default"])(response.data.message, response.data.type));
+            window.location.href = response.data.redirect;
+          })["catch"](function (error) {
+            if (formContainer.querySelector('.alert')) formContainer.querySelector('.alert').remove();
+            formContainer.prepend((0,_alert__WEBPACK_IMPORTED_MODULE_1__["default"])(error.response.data.message, 'error'));
           });
         case 6:
-          result = _context.sent;
-          response = result.data;
-          console.log(response);
-          container = document.querySelector('.form-body');
-          if (container.querySelector('.alert')) container.querySelector('.alert').remove();
-          container.prepend((0,_alert__WEBPACK_IMPORTED_MODULE_1__["default"])(response.message, response.type));
-          if (response.status == true) {
-            window.location.href = response.redirect;
-          }
-        case 13:
         case "end":
           return _context.stop();
       }
