@@ -23,6 +23,6 @@ mix
     .js('resources/js/register.js', 'public/js')
     .js('resources/js/newTopic.js', 'public/js')
     .js('resources/js/answerActions.js', 'public/js')
-
+    .js('resources/js/topicActions.js', 'public/js')
 
     .version();

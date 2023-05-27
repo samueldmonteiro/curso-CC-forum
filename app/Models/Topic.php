@@ -54,4 +54,15 @@ class Topic extends Model
         $this->uri = $uri;
         return $uri;
     }
+
+    public function stateToggle(): void
+    {
+        if ($this->state) {
+            $this->state = false;
+        } else {
+            $this->state = true;
+        }
+
+        $this->save();
+    }
 }

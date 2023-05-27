@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-dark">
         Deseja mesmo Deletar Este Tópico?
       </div>
       <div class="modal-footer">
@@ -16,7 +16,11 @@
   </div>
 </div>
 
-<div class="topic-item" data-id="{{$topic->id}}>">
+    @if(session('message'))
+        <x-alert type="success" message="{{session('message')}}"/>
+    @endif
+
+<div class="topic-item" data-id="{{$topic->id}}">
 
     <div class="topic-item-head">
         <div class="topic-item-info">
@@ -66,10 +70,9 @@
                         @endif?
                     </abbr>
                 @endif
-                <span><abbr title="Denunciar"><i class="bi bi-flag-fill"></i></abbr></span>
+               <!-- <span><abbr title="Denunciar"><i class="bi bi-flag-fill"></i></abbr></span> -->
                 
             </div>
-            
         </div>
 
         <div class="write-answer hide-write-answer">

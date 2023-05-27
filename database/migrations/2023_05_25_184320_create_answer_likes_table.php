@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('answer_likes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('answer_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('answer_id')->constrained()->cascadeOnDelete();
         });
     }
 

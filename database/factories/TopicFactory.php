@@ -21,6 +21,7 @@ class TopicFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'title' => fake()->paragraph(3),
             'matter_id' => Matter::factory(),
             'uri' => (new Topic)->generateUri(),
             'content' => fake()->paragraph(6),

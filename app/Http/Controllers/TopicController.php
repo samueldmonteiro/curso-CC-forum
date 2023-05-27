@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Matter;
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Mews\Purifier\Facades\Purifier;
 use Mews\Purifier\Purifier as PurifierPurifier;
 use voku\helper\AntiXSS;
@@ -74,8 +75,7 @@ class TopicController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Topic $topic)
-    {
-        //
+    {        //
     }
 
     /**
@@ -91,6 +91,21 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        if (auth()->id() !== $topic->user_id) {
+            return response()->json('Permission denied', 422);
+        }
+        $topic->delete();
+        return message()->success('Tópico removido!')->json();
+    }
+
+    public function state(Topic $topic)
+    {
+        if (auth()->id() !== $topic->user_id) {
+            return response()->json(['error' => 'Erro ao efetuar ação!'], 422);
+        }
+
+        $topic->stateToggle();
+        session()->flash('message', 'Estado do tópico atualizado!');
+        return message()->success('Ação confirmada!')->json();
     }
 }

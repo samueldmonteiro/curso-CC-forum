@@ -24,4 +24,5 @@
 
 @push('js')
 <script src="{{ mix('js/answerActions.js') }}"></script>
+<script src="{{ mix('js/topicActions.js') }}"></script>
 @endpush

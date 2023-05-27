@@ -43,6 +43,10 @@ Route::middleware('auth')->group(function () {
 
     // topics
     Route::resource('topicos', TopicController::class)->names('topics')->parameter('topicos', 'topic');
+    Route::controller(TopicController::class)->name('topics.')->prefix('topicos')->group(function () {
+        Route::post('{topic}/state', 'state')->name('state');
+    });
+
 
     //answers
     Route::resource('respostas', AnswerController::class)->names('answers')->parameter('respostas', 'answer');

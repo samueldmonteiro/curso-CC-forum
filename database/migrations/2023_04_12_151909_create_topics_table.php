@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('state')->comment('0 - open;1 - closed')->default(false);
             $table->timestamps();
 
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('matter_id')->constrained();
         });
     }
