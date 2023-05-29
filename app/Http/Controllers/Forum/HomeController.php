@@ -12,14 +12,37 @@ class HomeController extends Controller
 {
     public function home()
     {
-        //auth()->logout();
-
-        //return response("FOI");
-
         return view('home', [
             'user' => auth()->user(),
             'matters' => Matter::all(),
             'topics' => Topic::orderByDesc('id')->get()
+        ]);
+    }
+
+    public function searchTopics(Request $request)
+    {
+        $search = $request->search;
+        $topics = Topic::where('title', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%")
+            ->get();
+
+        return view('home', [
+            'user' => auth()->user(),
+            'matters' => Matter::all(),
+            'topics' => $topics
+        ]);
+    }
+
+    public function topicsByMatter(Request $request, string $matter)
+    {
+
+        $matter = Matter::where('uri', $request->matter)->first();
+        if (!$matter) return redirect()->route('home');
+
+        return view('home', [
+            'user' => auth()->user(),
+            'matters' => Matter::all(),
+            'topics' => $matter->topics()->get()
         ]);
     }
 }

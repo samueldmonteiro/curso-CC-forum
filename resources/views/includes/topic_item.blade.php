@@ -67,7 +67,7 @@
                             <i id="completed-topic" class="bi bi-check-circle-fill"></i>
                         @else
                             <i id="completed-topic" class="bi bi-check-circle"></i>
-                        @endif?
+                        @endif
                     </abbr>
                 @endif
                <!-- <span><abbr title="Denunciar"><i class="bi bi-flag-fill"></i></abbr></span> -->

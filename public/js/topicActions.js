@@ -125,18 +125,20 @@ function deleteTopic() {
     console.log(error);
   });
 }
-(0,_utils__WEBPACK_IMPORTED_MODULE_1__.qs)('#completed-topic').addEventListener('click', stateToggle);
-function stateToggle() {
-  axios.post("/topicos/".concat(topicId, "/state"), {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(function (response) {
-    console.log(response.data);
-    window.location.reload();
-  })["catch"](function (error) {
-    console.log(error);
-  });
+if ((0,_utils__WEBPACK_IMPORTED_MODULE_1__.qs)('#completed-topic')) {
+  var stateToggle = function stateToggle() {
+    axios.post("/topicos/".concat(topicId, "/state"), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      console.log(response.data);
+      window.location.reload();
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  };
+  (0,_utils__WEBPACK_IMPORTED_MODULE_1__.qs)('#completed-topic').addEventListener('click', stateToggle);
 }
 })();
 

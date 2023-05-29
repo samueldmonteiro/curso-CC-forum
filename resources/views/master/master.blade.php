@@ -22,10 +22,10 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form action="search.php" class="search-topics">
+                <form action="" class="search-topics">
                     <div class="input-group mb-3">
                         <button><i class="bi bi-search"></i></button>
-                        <input type="text" class="" placeholder="Pesquise por tópicos" name="search"  value="">
+                        <input type="text" id="search" placeholder="Pesquise por tópicos" name="search"  value="">
                       </div>
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     // home
     Route::controller(HomeController::class)->group(function () {
         Route::get('/', 'home')->name('home');
+        Route::get('/busca/{search}', 'searchTopics')->name('forum.searchTopics');
+        Route::get('/materias/{matter}/topicos', 'topicsByMatter')->name('forum.topicsByMatter');
     });
 
     // users

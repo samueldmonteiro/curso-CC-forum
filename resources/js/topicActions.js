@@ -1,5 +1,6 @@
 import alert from "./alert";
-import { qs, qsAll } from "./utils";
+import { qs, qsAll } from './utils';
+
 
 const topic = qs('.topic-item');
 const topicId = topic.dataset.id;
@@ -19,18 +20,20 @@ function deleteTopic() {
         });
 }
 
-qs('#completed-topic').addEventListener('click', stateToggle)
+if (qs('#completed-topic')) {
+    qs('#completed-topic').addEventListener('click', stateToggle);
 
-function stateToggle() {
+    function stateToggle() {
 
-    axios.post(`/topicos/${topicId}/state`, {
-        headers: { 'Content-Type': 'application/json' }
-    })
-        .then(response => {
-            console.log(response.data)
-            window.location.reload();
-        }).catch(error => {
-            console.log(error);
-        });
-
+        axios.post(`/topicos/${topicId}/state`, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => {
+                console.log(response.data)
+                window.location.reload();
+            }).catch(error => {
+                console.log(error);
+            });
+    }
 }
+

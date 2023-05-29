@@ -3265,11 +3265,18 @@ __webpack_require__.r(__webpack_exports__);
 if ((0,_utils__WEBPACK_IMPORTED_MODULE_1__.qs)('.topic-subject')) {
   (0,_utils__WEBPACK_IMPORTED_MODULE_1__.qsAll)('.topic-subject').forEach(function (subject) {
     var content = subject.innerHTML;
-    console.log(content);
     if (content.length > 150) {
       subject.innerHTML = subject.innerHTML.substring(0, 150) + '...';
     }
   });
+}
+(0,_utils__WEBPACK_IMPORTED_MODULE_1__.qs)('.search-topics').addEventListener('submit', function (e) {
+  e.preventDefault();
+  searchTopics();
+});
+function searchTopics() {
+  var search = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.qs)('#search').value;
+  window.location.href = '/busca/' + search;
 }
 
 /***/ }),

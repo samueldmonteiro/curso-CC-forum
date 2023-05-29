@@ -5,7 +5,7 @@
 
         @foreach($matters as $matter)
             <li class="nav-item">
-                <a href="categories.php?category={{$matter->title ?? null}}" class="nav-link"><i class="bi bi-play-fill"></i>{{$matter->title}}</a>
+                <a href="{{route('forum.topicsByMatter', ['matter'=>$matter->uri])}}" class="nav-link"><i class="bi bi-play-fill"></i>{{$matter->title}}</a>
             </li>
         @endforeach
 
