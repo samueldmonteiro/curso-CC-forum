@@ -12,7 +12,15 @@ class HomeController extends Controller
 {
     public function home()
     {
+        $head = $this->seo->render(
+            env('APP_NAME') . ' | Home',
+            'Bem vindo ao fórum do curso de Ciência da Computação!',
+            route('home'),
+            ''
+        );
+
         return view('home', [
+            'head' => $head,
             'user' => auth()->user(),
             'matters' => Matter::all(),
             'topics' => Topic::orderByDesc('id')->get()
@@ -26,7 +34,16 @@ class HomeController extends Controller
             ->orWhere('content', 'LIKE', "%{$search}%")
             ->get();
 
+
+        $head = $this->seo->render(
+            env('APP_NAME') . ' | Busca - ' . $search,
+            'Bem vindo ao fórum do curso de Ciência da Computação!',
+            route('forum.searchTopics', ['search' => $search]),
+            ''
+        );
+
         return view('home', [
+            'head' => $head,
             'user' => auth()->user(),
             'matters' => Matter::all(),
             'topics' => $topics
@@ -39,7 +56,16 @@ class HomeController extends Controller
         $matter = Matter::where('uri', $request->matter)->first();
         if (!$matter) return redirect()->route('home');
 
+        $head = $this->seo->render(
+            env('APP_NAME') . ' | Matéria - ' . $matter->title,
+            'Bem vindo ao fórum do curso de Ciência da Computação!',
+            route('forum.topicsByMatter', ['matter' => $matter->uri]),
+            ''
+        );
+
+
         return view('home', [
+            'head' => $head,
             'user' => auth()->user(),
             'matters' => Matter::all(),
             'topics' => $matter->topics()->get()

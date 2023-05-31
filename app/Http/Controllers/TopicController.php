@@ -67,8 +67,17 @@ class TopicController extends Controller
      */
     public function show(Request $request, string $topic)
     {
+
         $topic = Topic::where('uri', $topic)->firstOrFail();
-        return view('topics.show', compact('topic'));
+
+        $head = $this->seo->render(
+            env('APP_NAME') . ' | Tópico - ' . $topic->title,
+            'Bem vindo ao fórum do curso de Ciência da Computação!',
+            route('topics.show', ['topic' => $topic->uri]),
+            ''
+        );
+
+        return view('topics.show', compact('topic', 'head'));
     }
 
     /**

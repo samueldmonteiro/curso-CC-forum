@@ -47,7 +47,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $head = $this->seo->render(
+            env('APP_NAME') . ' | Usuário - ' . $user->name,
+            'Bem vindo ao fórum do curso de Ciência da Computação!',
+            route('users.show', ['user' => $user->id]),
+            ''
+        );
+
         return view('users.show', [
+            'head' => $head,
             'user' => $user
         ]);
     }
@@ -61,7 +69,15 @@ class UserController extends Controller
             return redirect()->back();
         }
 
+        $head = $this->seo->render(
+            env('APP_NAME') . ' | Usuário - Configurações',
+            'Bem vindo ao fórum do curso de Ciência da Computação!',
+            route('users.edit', ['user' => $user->id]),
+            ''
+        );
+
         return view('users.edit', [
+            'head' => $head,
             'user' => $user
         ]);
     }

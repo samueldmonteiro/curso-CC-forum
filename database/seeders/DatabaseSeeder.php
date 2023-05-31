@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Matter::factory(2)->hasTopics(3)->create();
+        foreach (['Matemática Discreta', 'Física Geral', 'AOC'] as $m) {
+            Matter::factory(1)->hasTopics(2)->create(['title' => $m]);
+        }
         Topic::factory(4)->hasAnswers(4)->create();
     }
 }
